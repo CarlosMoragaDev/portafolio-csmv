@@ -54,10 +54,10 @@ const getPokemonData = async () => {
             </UCard>
             <div class="lg:mx-15 lg:my-15 sm:mx-10 sm:my-10">
               <div class="p-5 flex justify-center">
-                <a class="parent" href="/public/pdf/Carlos-Moraga-Vergara-Resume.pdf" target="_blank"  download="Carlos-Moraga-Vergara-Resume">
+                <form class="parent" href="/public/pdf/Carlos-Moraga-Vergara-Resume.pdf" target="_blank"  download="Carlos-Moraga-Vergara-Resume">
                   <button class="custom-button">
                     <span>Descargar CV</span></button>
-                </a>
+                  </form>
               </div>
               <div class="pt-5 flex justify-center space-x-5">
                 <NuxtLink to="https://github.com/CarlosMoragaDev" target="_blank"
@@ -87,7 +87,7 @@ const getPokemonData = async () => {
               :ui="{ base: 'overflow-hidden', body: { base: '', padding: 'px-4 py-5 sm:p-2' }, ring: '', divide: '' }"
               class="h-4/5 bg-inherint">
               <div class="image-class">
-                <img src="/public/images/bg2.jpg" alt="bg1" />
+                <img src="/images/bg2.jpg" alt="bg1" />
               </div>
             </UCard>
           </div>
