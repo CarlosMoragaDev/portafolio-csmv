@@ -1,23 +1,22 @@
 <script lang="ts" setup>
 
 const content = {
-    image: "/images/5851e722a5cf496eb2b780784e4917bc.jpg",
+  image: "/images/5851e722a5cf496eb2b780784e4917bc.jpg",
 }
 const infoPokemon = ref()
 
-onMounted(async () => {
-  try {
-    let randomNumber = Math.floor(Math.random() * 1160) + 1;
-    const { data: response } = await useFetch("https://pokeapi.co/api/v2/pokemon/" + randomNumber, {
-      method: "GET",
-    });
+// onMounted(async () => {
+//   try {
+//     let randomNumber = Math.floor(Math.random() * 1160) + 1;
+//     const { data: response } = await useFetch("https://pokeapi.co/api/v2/pokemon/" + randomNumber, {
+//       method: "GET",
+//     });
 
-    infoPokemon.value = response.value;
-  } catch (error) {
-    console.error("Error fetching Pokemon data:", error);
-  }
-});
-
+//     infoPokemon.value = response.value;
+//   } catch (error) {
+//     console.error("Error fetching Pokemon data:", error);
+//   }
+// });
 
 const getPokemonData = async () => {
   try {
@@ -31,6 +30,12 @@ const getPokemonData = async () => {
     console.error('Error fetching data:', error);
   }
 };
+
+const isLoading = ref(true);
+setTimeout(() => {
+  getPokemonData()
+  isLoading.value = false;
+}, 500);
 
 </script>
 
@@ -57,10 +62,10 @@ const getPokemonData = async () => {
             </UCard>
             <div class="lg:mx-15 lg:my-15 sm:mx-10 sm:my-10">
               <div class="p-5 flex justify-center">
-                <form class="parent" action="/pdf/Carlos-Moraga-Vergara-Resume.pdf" target="_blank" >
+                <form class="parent" action="/pdf/Carlos-Moraga-Vergara-Resume.pdf" target="_blank">
                   <button class="custom-button">
                     <span>Descargar CV</span></button>
-                  </form>
+                </form>
               </div>
               <div class="pt-5 flex justify-center space-x-5">
                 <NuxtLink to="https://github.com/CarlosMoragaDev" target="_blank"
@@ -214,7 +219,7 @@ const getPokemonData = async () => {
                       <span class="w-3 h-3 rounded-full bg-yellow-500"></span>
                     </div>
                   </template>
-                  <div v-if="infoPokemon" class="flex justify-center">
+                  <!-- <div v-if="infoPokemon" class="flex justify-center">
                     <img class="w-40" :src=infoPokemon?.sprites?.front_default alt="test-pokemon" />
                     <ul>
                       <div class="lg:text-2xl sm:text-xl font-light text-justify capitalize p-5">{{ 'N°: ' +
@@ -232,6 +237,27 @@ const getPokemonData = async () => {
                   </div>
                   <div v-else>
                     <div class="flex justify-center">Error Data</div>
+                  </div> -->
+                  <div v-if="isLoading" class="grid justify-items-center">
+                    <UButton size="xl" variant="outline" loading>Cargando</UButton>
+                  </div>
+                  <div v-else>
+                    <div class="flex justify-center">
+                      <img class="w-40" :src=infoPokemon?.sprites?.front_default alt="test-pokemon" />
+                      <ul>
+                        <div class="lg:text-2xl sm:text-xl font-light text-justify capitalize p-5">{{ 'N°: ' +
+                          infoPokemon?.id
+                        }}
+                        </div>
+                        <div class="lg:text-2xl sm:text-xl font-light text-justify capitalize p-5">{{ 'Nombre: ' +
+                          infoPokemon?.name }}</div>
+                        <div v-for="(type, index) in infoPokemon?.types" :key="index">
+                          <div class="lg:text-2xl sm:text-xl font-light text-justify capitalize p-5">{{
+                            'Tipo: ' + type?.type?.name }}
+                          </div>
+                        </div>
+                      </ul>
+                    </div>
                   </div>
                   <template #footer>
                     <div class="flex justify-center">
