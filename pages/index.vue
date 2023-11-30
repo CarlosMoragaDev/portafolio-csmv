@@ -5,32 +5,43 @@ const content = {
 }
 const infoPokemon = ref()
 
-// onMounted(async () => {
-//   try {
+// const getPokemonData = async () => {
 //     let randomNumber = Math.floor(Math.random() * 1160) + 1;
+
 //     const { data: response } = await useFetch("https://pokeapi.co/api/v2/pokemon/" + randomNumber, {
 //       method: "GET",
 //     });
-
 //     infoPokemon.value = response.value;
-//   } catch (error) {
-//     console.error("Error fetching Pokemon data:", error);
-//   }
-// });
+// };
 
-const getPokemonData = async () => {
-  try {
-    let randomNumber = Math.floor(Math.random() * 1160) + 1;
-
-    const { data: response } = await useFetch("https://pokeapi.co/api/v2/pokemon/" + randomNumber, {
-      method: "GET",
-    });
-    infoPokemon.value = response.value;
-  } catch (error) {
-    console.error('Error fetching data:', error);
-  }
+const useAsyncData = async (url: any, options:any) => {
+    try {
+        const response = await fetch(url, options);
+        if (!response.ok) {
+            throw new Error('Network response was not ok.');
+        }
+        const data = await response.json();
+        return { data };
+    } catch (error) {
+        return { error: '' };
+    }
 };
 
+const getPokemonData = async () => {
+    let randomNumber = Math.floor(Math.random() * 1160) + 1;
+
+    const { data: response, error } = await useAsyncData("https://pokeapi.co/api/v2/pokemon/" + randomNumber, {
+        method: "GET",
+    });
+
+    if (error) {
+        // Manejar el error, por ejemplo:
+        console.error("Hubo un error al obtener los datos:", error);
+    } else {
+        // Usa los datos obtenidos, por ejemplo:
+        infoPokemon.value = response;
+    }
+};
 const isLoading = ref(true);
 setTimeout(() => {
   getPokemonData()
