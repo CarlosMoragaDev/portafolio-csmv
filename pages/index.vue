@@ -1,5 +1,8 @@
 <script lang="ts" setup>
 
+const content = {
+    image: "/images/5851e722a5cf496eb2b780784e4917bc.jpg",
+}
 const infoPokemon = ref()
 
 onMounted(async () => {
@@ -86,8 +89,8 @@ const getPokemonData = async () => {
             <UCard
               :ui="{ base: 'overflow-hidden', body: { base: '', padding: 'px-4 py-5 sm:p-2' }, ring: '', divide: '' }"
               class="h-4/5 bg-inherint">
-              <div class="image-class">
-                <img src="/images/bg2.jpg" alt="bg1" />
+              <div>
+                <img :src="content?.image" alt="bg1" />
               </div>
             </UCard>
           </div>

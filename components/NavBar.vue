@@ -45,7 +45,7 @@ const scrollToSection = (target: any) => {
       </div>
       </div>
     </nav>
-    <Dialog as="div" class="lg:hidden" @close="mobileMenuOpen = false" :open="mobileMenuOpen">
+    <!-- <Dialog as="div" class="lg:hidden" @close="mobileMenuOpen = false" :open="mobileMenuOpen">
       <div class="fixed inset-0 z-10" />
       <DialogPanel class="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
         <div class="flex items-center justify-between">
@@ -66,7 +66,7 @@ const scrollToSection = (target: any) => {
           </div>
         </div>
       </DialogPanel>
-    </Dialog>
+    </Dialog> -->
   </header>
 </template>
 
