@@ -5,46 +5,35 @@ const content = {
 }
 const infoPokemon = ref()
 
-// const getPokemonData = async () => {
-//     let randomNumber = Math.floor(Math.random() * 1160) + 1;
-
-//     const { data: response } = await useFetch("https://pokeapi.co/api/v2/pokemon/" + randomNumber, {
-//       method: "GET",
-//     });
-//     infoPokemon.value = response.value;
-// };
-
-const useAsyncData = async (url: any, options:any) => {
-    try {
-        const response = await fetch(url, options);
-        if (!response.ok) {
-            throw new Error('Network response was not ok.');
-        }
-        const data = await response.json();
-        return { data };
-    } catch (error) {
-        return { error: '' };
-    }
-};
-
 const getPokemonData = async () => {
     let randomNumber = Math.floor(Math.random() * 1160) + 1;
 
-    const { data: response, error } = await useAsyncData("https://pokeapi.co/api/v2/pokemon/" + randomNumber, {
-        method: "GET",
+    const { data: response } = await useFetch("https://pokeapi.co/api/v2/pokemon/" + randomNumber, {
+      method: "GET",
     });
-
-    if (error) {
-        // Manejar el error, por ejemplo:
-        console.error("Hubo un error al obtener los datos:", error);
-    } else {
-        // Usa los datos obtenidos, por ejemplo:
-        infoPokemon.value = response;
-    }
+    infoPokemon.value = response.value;
 };
+
+const data = ref('')
+const dataId = ref()
+const dataName = ref()
+const dataTypes = ref()
+const dataImage = ref()
+
+const getNewData = async function fetchData() {
+  let randomNumber = Math.floor(Math.random() * 150) + 1;
+  const response = await fetch('https://pokeapi.co/api/v2/pokemon/' + randomNumber)
+  const jsonData = await response.json()
+  data.value = jsonData; // Almacena el JSON completo en la variable reactiva 'data'
+        dataId.value = jsonData.id; 
+        dataName.value = jsonData.name;
+        dataTypes.value = jsonData.types;
+        dataImage.value = jsonData.sprites?.front_default;
+}
+
 const isLoading = ref(true);
 setTimeout(() => {
-  getPokemonData()
+  getNewData()
   isLoading.value = false;
 }, 500);
 
@@ -216,6 +205,7 @@ setTimeout(() => {
             <div class="grid justify-items-center">
               <div class="p-5 w-80% flex flex-col items-center justify-center text-center rounded-md border-4 border-main-color shadow-xl
                  transition border-opacity-0 hover:border-opacity-100 hover:bg-blue-200">
+                 
                 <h3 class="lg:text-4xl sm:text-2xl font-bold pb-4">Pokedex</h3>
                 <UCard :ui="{
                   base: 'overflow-hidden', header: { background: 'bg-red-600' },
@@ -254,15 +244,15 @@ setTimeout(() => {
                   </div>
                   <div v-else>
                     <div class="flex justify-center">
-                      <img class="w-40" :src=infoPokemon?.sprites?.front_default alt="test-pokemon" />
+                      <img class="w-40" :src=dataImage alt="test-pokemon" />
                       <ul>
                         <div class="lg:text-2xl sm:text-xl font-light text-justify capitalize p-5">{{ 'N°: ' +
-                          infoPokemon?.id
+                          dataId
                         }}
                         </div>
                         <div class="lg:text-2xl sm:text-xl font-light text-justify capitalize p-5">{{ 'Nombre: ' +
-                          infoPokemon?.name }}</div>
-                        <div v-for="(type, index) in infoPokemon?.types" :key="index">
+                           dataName   }}</div>
+                        <div v-for="(type, index) in dataTypes" :key="index">
                           <div class="lg:text-2xl sm:text-xl font-light text-justify capitalize p-5">{{
                             'Tipo: ' + type?.type?.name }}
                           </div>
@@ -273,7 +263,7 @@ setTimeout(() => {
                   <template #footer>
                     <div class="flex justify-center">
                       <UButton size="lg" color="amber" variant="solid" label="Obten datos de un Pokemon"
-                        @click="getPokemonData" />
+                        @click="getNewData" />
                     </div>
                   </template>
                 </UCard>
