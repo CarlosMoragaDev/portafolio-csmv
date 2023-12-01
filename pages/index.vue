@@ -128,7 +128,7 @@ setTimeout(() => {
         <UContainer :ui="{ base: 'mx-auto', 'padding': 'pt-10 sm:px-6 lg:px-8', 'constrained': 'max-w-7xl' }">
           <div class="font-mono">
             <h2 class="lg:text-5xl sm:text-3xl font-bold lg:px-20 sm:px-10 text-justify flex justify-center p-6">
-              Habilidades
+              Herramientas
             </h2>
             <div class="grid grid-cols-2 gap-4 place-content-center lg:text-xl sm:text-lg font-light">
               <UBadge color="emerald" variant="solid" size="lg" label="Javascript" />
@@ -201,7 +201,7 @@ setTimeout(() => {
           </div>
           <div>
           </div>
-          <div class="p-5">
+          <!-- <div class="p-5">
             <div class="grid justify-items-center">
               <div class="p-5 w-80% flex flex-col items-center justify-center text-center rounded-md border-4 border-main-color shadow-xl
                  transition border-opacity-0 hover:border-opacity-100 hover:bg-blue-200">
@@ -220,7 +220,7 @@ setTimeout(() => {
                       <span class="w-3 h-3 rounded-full bg-yellow-500"></span>
                     </div>
                   </template>
-                  <!-- <div v-if="infoPokemon" class="flex justify-center">
+                  <div v-if="infoPokemon" class="flex justify-center">
                     <img class="w-40" :src=infoPokemon?.sprites?.front_default alt="test-pokemon" />
                     <ul>
                       <div class="lg:text-2xl sm:text-xl font-light text-justify capitalize p-5">{{ 'N°: ' +
@@ -238,7 +238,7 @@ setTimeout(() => {
                   </div>
                   <div v-else>
                     <div class="flex justify-center">Error Data</div>
-                  </div> -->
+                  </div>
                   <div v-if="isLoading" class="grid justify-items-center">
                     <UButton size="xl" variant="outline" loading>Cargando</UButton>
                   </div>
@@ -269,7 +269,7 @@ setTimeout(() => {
                 </UCard>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
       </section>
     </div>
