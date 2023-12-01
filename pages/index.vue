@@ -62,7 +62,7 @@ setTimeout(() => {
             </UCard>
             <div class="lg:mx-15 lg:my-15 sm:mx-10 sm:my-10">
               <div class="p-5 flex justify-center">
-                <form class="parent" action="/pdf/Carlos-Moraga-Vergara-Resume.pdf" target="_blank">
+                <form class="parent" action="/pdf/Carlos-Moraga-Vergara.pdf" target="_blank">
                   <button class="custom-button">
                     <span>Descargar CV</span></button>
                 </form>
