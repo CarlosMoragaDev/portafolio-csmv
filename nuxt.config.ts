@@ -8,9 +8,4 @@ ssr: true, //server side rendered enabled //When true
   modules: [
     '@nuxt/ui',
     '@nuxtjs/tailwindcss',],
-    nitro: {
-      prerender: {
-        routes: ['/pages/index',],
-      }
-    }
 })
