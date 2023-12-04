@@ -10,7 +10,7 @@ ssr: true, //server side rendered enabled //When true
     '@nuxtjs/tailwindcss',],
     nitro: {
       prerender: {
-        routes: ['/index',],
+        routes: ['index.vue',],
       }
     }
 })
