@@ -1,6 +1,6 @@
 {
   "name": "portafolio-csmv",
-  "private": true,
+  "private": false,
   "type": "module",
   "scripts": {
     "build": "nuxt build",
