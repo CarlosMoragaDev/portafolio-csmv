@@ -3,15 +3,14 @@ export default defineNuxtConfig({
 //   app: {
 //     baseURL: "/portafolio-csmv/"
 // },
-ssr: false, //server side rendered enabled //When true
+ssr: true, //server side rendered enabled //When true
   devtools: { enabled: true },
   modules: [
     '@nuxt/ui',
     '@nuxtjs/tailwindcss',],
     nitro: {
       prerender: {
-        crawlLinks: true,
-        routes: ['/index']
+        routes: ['/index',],
       }
     }
 })
